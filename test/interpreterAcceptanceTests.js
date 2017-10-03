@@ -3,6 +3,7 @@ var should = require('should');
 var assert = require('assert');
 
 var Interpreter = require('../src/interpreter');
+var data = require('../src/data');
 
 
 describe("Interpreter", function () {
@@ -24,6 +25,11 @@ describe("Interpreter", function () {
         "hija(X, Y) :- mujer(X), padre(Y, X)."
     ];
 
+    var dbTestShortVersion = [
+        "varon(juan).",
+        "varon(pepe)."
+    ];
+
     var interpreter = null;
 
     before(function () {
@@ -38,12 +44,12 @@ describe("Interpreter", function () {
         // runs before each test in this block
         interpreter = new Interpreter();
         interpreter.parseDB(db);
+        // parser = new Parser();
     });
 
     afterEach(function () {
         // runs after each test in this block
     });
-
 
     describe('Interpreter Facts', function () {
 
