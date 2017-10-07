@@ -25,11 +25,6 @@ describe("Interpreter", function () {
         "hija(X, Y) :- mujer(X), padre(Y, X)."
     ];
 
-    var dbTestShortVersion = [
-        "varon(juan).",
-        "varon(pepe)."
-    ];
-
     var interpreter = null;
 
     before(function () {
@@ -73,8 +68,6 @@ describe("Interpreter", function () {
             assert(interpreter.checkQuery('padre(mario, pepe)') === false);
         });
 
-        // TODO: Add more tests
-
     });
 
     describe('Interpreter Rules', function () {
@@ -89,10 +82,7 @@ describe("Interpreter", function () {
             assert(interpreter.checkQuery('hijo(pepe, juan)'));
         });
 
-        // TODO: Add more tests
-
     });
-
 
 });
 

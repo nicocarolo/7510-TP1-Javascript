@@ -9,6 +9,15 @@ const Fact = function (description, params) {
         return false;
     }
 
+    this.toString = function () {
+        let factString = this.name + "(";
+        for (var j = 0; j < this.values.length; j++) {  //loop params
+            factString += this.values[j] + ", ";
+        }
+        factString = factString.substring(0, factString.length - 2);
+        factString += ").";
+        return factString;
+    }
 
 }
 
@@ -33,6 +42,19 @@ const Rule = function (description, params, factsToTest) {
         return factsToTest;
     }
 
+    this.toString = function () {
+        let ruleString = this.name + "(";
+        for (var j = 0; j < this.params.length; j++) {  //loop params
+            ruleString += this.params[j] + ", ";
+        }
+        ruleString = ruleString.substring(0, ruleString.length - 2);
+        ruleString += ") :- ";
+        for (var j = 0; j < this.factsToTest.length; j++) {  //loop params
+            ruleString += this.factsToTest[j].toString() + "\n";
+        }
+        ruleString = ruleString.substring(0, ruleString.length - 1);
+        return ruleString;
+    }
 }
 
 exports.Fact = Fact

@@ -13,11 +13,12 @@ const Interpreter = function () {
         const facts = [];
         const rules = [];
         for (var i = 0; i < params.length; i++) {
-            if (this.formatIsRule(params[i])) {
+            if (this.parser.validRule(params[i])) {
                 rules.push(this.parser.parseRule(params[i]));
             }
             else {
-                facts.push(this.parser.parseFact(params[i]));
+                if (this.parser.validFact(params[i]))
+                    facts.push(this.parser.parseFact(params[i]));
             }
         }
         this.dbFacts = facts;
@@ -40,9 +41,6 @@ const Interpreter = function () {
         return false;
     }
 
-    this.formatIsRule = function (entry) {
-        return entry.match(/[(][A-Z]/) !== null;
-    }
 
     this.isFact = function (query) {
         const isFact = this.dbFacts.some(fact => fact.isEqualTo(query));

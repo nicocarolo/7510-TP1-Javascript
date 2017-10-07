@@ -23,9 +23,16 @@ const Parser = function () {
         }
 
         this.validQuery = function (query) {
-            return true;
+            return /^[a-z]+\(([a-z]+, )*[a-z]+\)/.test(query);
         }
-
+        
+        this.validRule = function (entry) {
+            return /^[a-z]+\(([A-Z]+, )*[A-Z]+\) :- (([a-z]+\(([A-Z]+, )*[A-Z]+\)), )*([a-z]+\(([A-Z]+, )*[A-Z]+\))\./.test(entry);
+        }
+    
+        this.validFact = function (entry) {
+            return /^[a-z]+\(([a-z]+, )*[a-z]+\)\./.test(entry);
+        }
     }
 
 module.exports = Parser;
